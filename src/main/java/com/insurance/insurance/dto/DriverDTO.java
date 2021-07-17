@@ -1,21 +1,14 @@
-package com.insurance.insurance.models;
-
+package com.insurance.insurance.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import javax.persistence.*;
 import java.util.Date;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
-@Table(name = "driver")
-public class Driver {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class DriverDTO {
     private Long id;
     private String salutation;
     private String firstName;
@@ -31,5 +24,4 @@ public class Driver {
     private boolean canUseOutSide;
     private long currentValue;
     private String registeredDate;
-
 }
