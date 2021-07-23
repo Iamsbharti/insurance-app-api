@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @Log4j2
 @RequestMapping("/api/v1/insurance")
+@CrossOrigin
 public class DriverController {
     DriverServices driverServices;
     @Autowired
@@ -66,6 +67,20 @@ public class DriverController {
         response.setData(driverInfo);
 
         return new ResponseEntity<>(response,HttpStatus.OK);
+    }
+    @PostMapping("/update/driver")
+    @ResponseBody
+    public ResponseEntity<ApiResponse> updateDriverInfo(@RequestBody DriverDTO driverDTO) throws DriverNotFoundException {
+        log.info("Update Driver info");
+        Driver driverInfoObject= DtoConvertor.driverDtoToEntity(driverDTO);
+        Driver driverUpdatesResponse = driverServices.updateDriverInfo(driverInfoObject);
+
+        ApiResponse updatesResponse = new ApiResponse();
+        updatesResponse.setStatus("success");
+        updatesResponse.setMessage("Driver info updated");
+        updatesResponse.setData(driverUpdatesResponse);
+
+        return new ResponseEntity<>(updatesResponse,HttpStatus.OK);
     }
 
 }

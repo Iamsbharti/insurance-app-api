@@ -31,8 +31,20 @@ public class DriverServicesImpl implements DriverServices {
         return driverInfo.get();
     }
     @Override
-    public String updateDriverInfo(Driver driveInfo)throws DriverNotFoundException{
-        return "Updated";
+    public Driver updateDriverInfo(Driver driverInfo)throws DriverNotFoundException{
+        Driver driverObject = getDriverInfo(driverInfo.getId());
+        if(driverObject != null){
+            // save new properties
+            driverObject.setFirstName(driverInfo.getFirstName());
+            driverObject.setLastName(driverInfo.getLastName());
+            driverObject.setAddress(driverInfo.getAddress());
+            driverObject.setSalutation(driverInfo.getSalutation());
+            driverObject.setPinCode(driverInfo.getPinCode());
+            driverObject.setCity(driverInfo.getCity());
+            driverObject.setTelephone(driverInfo.getTelephone());
+            driverRepository.save(driverObject);
+        }
+        return driverObject;
     }
     @Override
     public String deleteDriver(Long driverId)throws DriverNotFoundException{

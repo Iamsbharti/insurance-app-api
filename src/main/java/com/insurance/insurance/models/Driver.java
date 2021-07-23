@@ -12,7 +12,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "driver")
+@Table(name = "DRIVER_DETAILS")
 public class Driver {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,7 +20,7 @@ public class Driver {
     private String salutation;
     private String firstName;
     private String lastName;
-    private int telephone;
+    private Long telephone;
     private String address;
     private String city;
     private String pinCode;
