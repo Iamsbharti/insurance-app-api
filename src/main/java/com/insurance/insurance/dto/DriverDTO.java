@@ -18,8 +18,8 @@ public class DriverDTO {
     private String city;
     private String pinCode;
     private String vehicleType;
-    private String engineSize;
-    private String driversCount;
+    private int engineSize;
+    private int driversCount;
     private boolean isCommercial;
     private boolean canUseOutSide;
     private long currentValue;

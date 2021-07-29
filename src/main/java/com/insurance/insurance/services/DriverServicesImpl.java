@@ -1,5 +1,6 @@
 package com.insurance.insurance.services;
 
+import com.insurance.insurance.common.InsuranceQuotation;
 import com.insurance.insurance.exception.DriverNotFoundException;
 import com.insurance.insurance.models.Driver;
 import com.insurance.insurance.repository.DriverRepository;
@@ -11,14 +12,22 @@ import java.util.Optional;
 @Service
 public class DriverServicesImpl implements DriverServices {
     private DriverRepository driverRepository;
+    private InsuranceQuotation insuranceQuotation;
 
     @Autowired
-    public DriverServicesImpl(DriverRepository driverRepository) {
+    public DriverServicesImpl(DriverRepository driverRepository,InsuranceQuotation insuranceQuotation) {
         this.driverRepository = driverRepository;
+        this.insuranceQuotation = insuranceQuotation;
     }
 
     @Override
     public Driver saveDriveInfo(Driver driver)  {
+        Double quotationAmount = insuranceQuotation.calculateInsuranceQuotation(
+                                    driver.getVehicleType(),driver.getEngineSize(),
+                                    driver.getCurrentValue(),driver.getDriversCount(),
+                                    driver.isCommercial(),driver.isCanUseOutSide());
+
+        driver.setQuoteAmount(quotationAmount);
         return driverRepository.save(driver);
     }
 
