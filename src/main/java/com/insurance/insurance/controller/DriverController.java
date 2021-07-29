@@ -30,7 +30,7 @@ public class DriverController {
         return new ResponseEntity(pingResponse, HttpStatus.OK);
     }
 
-    @PostMapping("/save/driver/quote")
+    @PostMapping("/driver/quote")
     public ResponseEntity<ApiResponse> saveDriveInfo(@RequestBody DriverDTO driverDTO){
         // convert DTO to entity(Driver)
         Driver newDriverObject = DtoConvertor.driverDtoToEntity(driverDTO);
@@ -44,7 +44,7 @@ public class DriverController {
 
         return new ResponseEntity<>(response,HttpStatus.CREATED);
     }
-    @DeleteMapping("/delete/driver/quote/{id}")
+    @DeleteMapping("/driver/quote/{id}")
     public ResponseEntity<ApiResponse> deleteDriverQuote(@PathVariable long id) throws DriverNotFoundException {
         log.info("Delete Driver Quote Controller::"+id);
         String error = driverServices.deleteDriver(id);
@@ -57,7 +57,7 @@ public class DriverController {
         return new ResponseEntity<>(response,HttpStatus.OK);
     }
 
-    @GetMapping("/get/driver/quote/{id}")
+    @GetMapping("/driver/quote/{id}")
     public ResponseEntity<ApiResponse> getDriverQuoteInfo(@PathVariable long id) throws DriverNotFoundException{
         log.info("Get Driver Quote info::"+id);
         Driver driverInfo= driverServices.getDriverInfo(id);
@@ -68,7 +68,7 @@ public class DriverController {
 
         return new ResponseEntity<>(response,HttpStatus.OK);
     }
-    @PostMapping("/update/driver")
+    @PutMapping("/driver/quote")
     @ResponseBody
     public ResponseEntity<ApiResponse> updateDriverInfo(@RequestBody DriverDTO driverDTO) throws DriverNotFoundException {
         log.info("Update Driver info");
