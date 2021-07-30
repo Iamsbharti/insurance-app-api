@@ -13,6 +13,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @Log4j2
 @RequestMapping("/api/v1/insurance")
@@ -31,7 +33,7 @@ public class DriverController {
     }
 
     @PostMapping("/driver/quote")
-    public ResponseEntity<ApiResponse> saveDriveInfo(@RequestBody DriverDTO driverDTO){
+    public ResponseEntity<ApiResponse> saveDriveInfo(@Valid  @RequestBody DriverDTO driverDTO){
         // convert DTO to entity(Driver)
         Driver newDriverObject = DtoConvertor.driverDtoToEntity(driverDTO);
         Driver savedDriverQuote = driverServices.saveDriveInfo(newDriverObject);
